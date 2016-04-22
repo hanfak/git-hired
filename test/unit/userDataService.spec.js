@@ -21,5 +21,5 @@ describe('UserDataService', function() {
     });
 
     httpBackend.flush();
-  })
-})
+  });
+});
