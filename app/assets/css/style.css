@@ -5,6 +5,9 @@
 a{
   text-decoration: none;
 }
+
+
+
 .user {
   box-shadow: rgba(0, 0, 0, 0.0784314) 0px 1px 2px 0px;
   color: rgb(61, 62, 68);
@@ -54,9 +57,4 @@ a{
 .details span{
   display: block;
   font: normal normal 500 normal 14px / 17.5px Calibre, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-#users .details .login{
-  font-size: 1.3em;
-  margin-bottom: 5px;
 }

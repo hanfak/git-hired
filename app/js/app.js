@@ -1,1 +1,1 @@
-var gitHired = angular.module('gitHired', []);
+var gitHired = angular.module('gitHired', ['ngAnimate']);

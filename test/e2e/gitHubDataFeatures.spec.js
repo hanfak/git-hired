@@ -1,29 +1,18 @@
+var mock = require('protractor-http-mock');
+beforeEach(function () {
+  mock([{
+  request: {
+    path: 'https://api.github.com/search/users?q=Fakey',
+    method: 'GET'
+  },
+  response: {
+      data: { items: [{"login": "tobenna"},{"login": "hanfak"}] }
+    }
+  }]);
+});
+
 describe('gitHubDataController',function () {
   var user;
-  var mockSearch = require('protractor-http-mock');
-  var mockGet = require('protractor-http-mock');
-
-  beforeEach(function () {
-    mockSearch([{
-    request: {
-      path: 'https://api.github.com/search/users?q=Fakey',
-      method: 'GET'
-    },
-    response: {
-        data: { items: [{"login": "tobenna"},{"login": "hanfak"}] }
-      }
-    }]);
-    
-    mockGet([{
-      request: {
-        path: 'https://api.github.com/users/Fakey?access_token=92a1dbb7644d40d15398a160b6002835ca85ef31',
-        method: 'GET'
-      },
-      response: {
-        data: {"login": "tobenna", "public_repos": 25, "followers": 5, "avatar_url": 'url'}
-        }
-      }]);
-  });
 
   it('has users', function () {
     browser.get('/');
@@ -58,8 +47,8 @@ describe('gitHubDataController',function () {
   });
 
 
-  afterEach(function(){
-    mockSearch.teardown();
-    mockGet.teardown();
-  });
+});
+
+afterEach(function(){
+  mock.teardown();
 });
