@@ -1,7 +1,7 @@
 gitHired.controller('gitHubDataController',['GitHubDataService', 'UserDataService', function (GitHubDataService, UserDataService) {
   var self = this;
 
-  self.users = [];
+  _refreshUserArray();
 
   self.searchUser = function(searchUserText) {
     GitHubDataService.getAll(searchUserText)
@@ -28,4 +28,8 @@ gitHired.controller('gitHubDataController',['GitHubDataService', 'UserDataServic
       return getUser(username);
     });
   }
+
+  self.hasUsers = function(){
+    return (self.users.length > 0);
+  };
 }]);
