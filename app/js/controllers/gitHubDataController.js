@@ -7,7 +7,7 @@ gitHired.controller('gitHubDataController',['GitHubDataService', 'UserDataServic
     if (typeof searchUserText !== 'undefined' ) {
       GitHubDataService.getAll(searchUserText)
         .then(_getUserData);
-    }  
+    }
   };
 
   function _getUserData(usernames) {
