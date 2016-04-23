@@ -13,7 +13,6 @@ beforeEach(function () {
 
 describe('gitHubDataController',function () {
   var user;
-
   it('has users', function () {
     browser.get('/');
     $('#searchUser').sendKeys('Fakey');
