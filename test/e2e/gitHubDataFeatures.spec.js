@@ -1,26 +1,46 @@
+var mock = require('protractor-http-mock');
+
+mock([{
+          request: {
+            path: 'https://api.github.com/search/users',
+            method: 'GET'
+          },
+          response: {
+            data: { items: [{"login": "fakey"}] }
+          }
+        },
+      {
+        request: {
+          path: 'https://api.github.com/users/fakey',
+          method: 'GET'
+        },
+        response: {
+          data: {"login": "fakey", "public_repos": 25, "followers": 5, "avatar_url": 'url'}
+        }
+      }
+]);
+
 describe('gitHubDataController',function () {
   var user;
-
-  beforeEach(function () {
+  beforeAll(function () {
     browser.get('/');
+    $('#searchUser').sendKeys('fakey');
+    $('#submitSearch').click();
   });
 
   it('has users', function () {
     var users = $$('#users .user');
-    expect(users.first().getText()).toMatch('tobenna');
-    expect(users.last().getText()).toMatch('hanfak');
+    expect(users.first().getText()).toMatch('fakey');
   });
 
   it('has user avatars', function () {
     var user = $$('#users .user').first();
-    var mypic = user.element(by.css("img[src*='https://avatars.githubusercontent.com/u/583231?v=3']"));
+    var mypic = user.element(by.css("img[src*='url']"));
     expect((mypic).isPresent()).toBe(true);
   });
 
   describe('user details',function () {
-
     beforeEach(function () {
-      browser.get('/');
       user = $$('#users .user').first();
     });
 
@@ -35,4 +55,8 @@ describe('gitHubDataController',function () {
     });
   });
 
+
+  afterAll(function(){
+    mock.teardown();
+  });
 });

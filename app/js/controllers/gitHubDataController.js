@@ -4,8 +4,10 @@ gitHired.controller('gitHubDataController',['GitHubDataService', 'UserDataServic
   self.users = [];
 
   self.searchUser = function(searchUserText) {
-    GitHubDataService.getAll(searchUserText)
-      .then(_getUserData);
+    if (typeof searchUserText !== 'undefined' ) {
+      GitHubDataService.getAll(searchUserText)
+        .then(_getUserData);
+    }  
   };
 
   function _getUserData(usernames) {

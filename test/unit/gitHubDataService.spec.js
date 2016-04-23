@@ -18,5 +18,5 @@ describe('GitHubDataService', function() {
     });
 
     httpBackend.flush();
-  })
-})
+  });
+});
